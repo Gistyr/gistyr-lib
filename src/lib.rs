@@ -38,6 +38,10 @@ pub enum OpCode {
     Authenticated,
     NotAuthenticated,
     TwoInts(Int, Int),
+    Continue,
+    Finished,
+    Early,
+    Deinitialized,
 }
 impl fmt::Display for OpCode {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -46,6 +50,10 @@ impl fmt::Display for OpCode {
             Self::Authenticated => write!(f, "Authenticated"),
             Self::NotAuthenticated => write!(f, "NotAuthenticated"),
             Self::TwoInts(a, b) => write!(f, "TwoInts({}, {})", a, b),
+            Self::Continue => write!(f, "Continue"),
+            Self::Finished => write!(f, "Finished"),
+            Self::Early => write!(f, "Early"),
+            Self::Deinitialized => write!(f, "Deinitialized"),
         }
     }
 }
