@@ -24,19 +24,19 @@ impl fmt::Display for OpCode {
 #[derive(Debug, Clone, PartialEq)]
 pub enum Gistyr {
     Success(OpCode),
-    Error(String, String),
+    Error(String, String, String),
 }
 impl fmt::Display for Gistyr {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
             Self::Success(op) => write!(f, "Success({})", op),
-            Self::Error(from, msg) => write!(f, "Error({}, {})", from, msg),
+            Self::Error(lib, from, msg) => write!(f, "Error({}, {}, {})", lib, from, msg),
         }
     }
 }
 impl Gistyr {
-    pub fn error<F: Into<String>, M: Into<String>>(from: F, msg: M) -> Self {
-        return Self::Error(from.into(), msg.into());
+    pub fn error<L: Into<String>, F: Into<String>, M: Into<String>>(lib: L, from: F, msg: M) -> Self {
+        return Self::Error(lib.into(), from.into(), msg.into());
     }
 }
 
