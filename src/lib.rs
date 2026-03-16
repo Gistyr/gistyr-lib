@@ -37,12 +37,14 @@ pub enum OpCode {
     Null,
     Authenticated,
     NotAuthenticated,
-    TwoInts(Int, Int),
-    FourInts(Int, Int, Int, Int),
     Continue,
     Finished,
     Early,
     Deinitialized,
+    OneInt(Int),
+    TwoInts(Int, Int),
+    ThreeInts(Int, Int, Int),
+    FourInts(Int, Int, Int, Int),
 }
 impl fmt::Display for OpCode {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
@@ -50,12 +52,14 @@ impl fmt::Display for OpCode {
             Self::Null => write!(f, "Null"),
             Self::Authenticated => write!(f, "Authenticated"),
             Self::NotAuthenticated => write!(f, "NotAuthenticated"),
-            Self::TwoInts(a, b) => write!(f, "TwoInts({}, {})", a, b),
-            Self::FourInts(a, b, c, d) => write!(f, "FourInts({}, {}, {}, {})", a, b, c, d),
             Self::Continue => write!(f, "Continue"),
             Self::Finished => write!(f, "Finished"),
             Self::Early => write!(f, "Early"),
             Self::Deinitialized => write!(f, "Deinitialized"),
+            Self::OneInt(a) => write!(f, "OneInt({})", a),
+            Self::TwoInts(a, b) => write!(f, "TwoInts({}, {})", a, b),
+            Self::ThreeInts(a, b, c) => write!(f, "ThreeInts({}, {}, {})", a, b, c),
+            Self::FourInts(a, b, c, d) => write!(f, "FourInts({}, {}, {}, {})", a, b, c, d),
         }
     }
 }
