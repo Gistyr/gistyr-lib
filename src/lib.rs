@@ -81,6 +81,13 @@ impl Gistyr {
     pub fn error<L: Into<String>, F: Into<String>, M: Into<String>>(lib: L, func: F, msg: M) -> Self {
         return Self::Error(lib.into(), func.into(), msg.into());
     }
+
+    pub fn get_error_message(&self) -> Option<String> {
+        match self {
+            Self::Success(_) => return None,
+            Self::Error(_, _, msg) => return Some(msg.clone()),
+        }
+    }
 }
 
 // -------- //
